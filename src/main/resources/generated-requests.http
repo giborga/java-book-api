@@ -1,0 +1,51 @@
+GET http://localhost:8082/api/v1/book
+
+###
+POST http://localhost:8082/api/v1/book
+Content-Type: application/json
+
+{
+"author": "Haruki Murakami",
+"title": "The end of the world"}
+
+###
+POST http://localhost:8082/api/v1/book
+Content-Type: application/json
+
+{
+"author": "Fyodor Dostoevsky",
+"title": "Special military operation and Peace"
+}
+
+###
+POST http://localhost:8082/api/v1/book
+Content-Type: application/json
+
+{
+  "author": "Charles Baudelaire",
+  "title": "Le Voyage"
+}
+
+###
+POST http://localhost:8082/api/v1/book
+Content-Type: application/json
+
+{
+  "author": "Haruki Murakami",
+  "title": "The end of the world"
+}
+
+###
+POST http://localhost:8082/api/v1/book
+Content-Type: application/json
+
+{
+  "author": "Shota Rustaveli",
+  "title": "The man in the panthers skin"
+}
+
+###
+DELETE http://localhost:8082/api/v1/book/1
+
+###
+PUT http://localhost:8082/api/v1/book/1?title=War+and+Piece

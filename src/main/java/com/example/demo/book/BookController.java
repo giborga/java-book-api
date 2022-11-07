@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //serves REST endpoints
-@RequestMapping(path="api/v1/book")  // + why path is here separately?
+@RequestMapping(path="api/v1/book")
 public class BookController {
 
     private final BookService bookService; // reference to BookService to use methods and add it to the constructor
@@ -26,18 +26,19 @@ public class BookController {
     // if title does not exist - add to db
     // else - throw an exception
     @PostMapping
-    public void registerNewBook(@RequestBody Book book) { //map this new Student with json request body we pass
+    public void registerNewBook(@RequestBody Book book) { //map this new Book with json request body we pass
         bookService.addNewBook(book);
-    }; //request body json connect
+    } //request body json connect
 
-    // if student id exists - delete, else - illegal exception
+    // if book id exists - delete, else - illegal exception
     @DeleteMapping(path = "{bookId}") // path variable
     public void deleteBook(@PathVariable("bookId") Long bookId) {
         bookService.deleteBook(bookId);
     }
 
-    @PutMapping(path = "{bookId}") //http://localhost:8082/api/v1/book/1?title=War+and+Piece
-    public void updateBook(@PathVariable("bookId") Long bookId,
+    @PutMapping() //http://localhost:8082/api/v1/book/1?title=War+and+Piece
+    public void updateBook(
+                              @RequestParam() Long bookId,
                               @RequestParam(required = false) String author,
                               @RequestParam(required = false) String title) {
         bookService.updateBook(bookId, author, title);
