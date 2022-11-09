@@ -41,6 +41,7 @@ DELETE http://localhost:8082/api/v1/book/1
 
 ###
 PUT http://localhost:8082/api/v1/book/1
+Content-Type: application/json
 
 {
 "author": "Fyodor+Dostoevsky",
