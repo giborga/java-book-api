@@ -8,17 +8,15 @@ import javax.persistence.*;
 @Entity // hibernate
 @Table // map Book class to a table in database
 public class Book {
+
     @Id
     @SequenceGenerator(
         name = "book_sequence",
         sequenceName = "book_sequence",
         allocationSize = 1 // increment 1
     )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE, // recommended for postgres
-        generator = "book_sequence"
-    )
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, // recommended for postgres
+        generator = "book_sequence")
     private Long id;
     private String author;
     private String title;
@@ -28,7 +26,7 @@ public class Book {
 
     public Book(String author, // dont need id - it will be generated
                    String title) {
-        this.author = author; // + don't need id here - variable is already assigned in SequenceGenerator
+        this.author = author; // don't need id here - variable is already assigned in SequenceGenerator
         this.title = title;
     }
 

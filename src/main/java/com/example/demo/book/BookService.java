@@ -47,24 +47,24 @@ public class BookService {
 
     // transactional - don't have to implement jbql - use service to update entity if it's possible
     @Transactional
-    public void updateBook(Long bookId, String author, String title) {
-        Book book = bookRepository.findById(bookId) // method from crud repo
+    public void updateBook(Long bookId, Book book) {
+        Book bookOld = bookRepository.findById(bookId) // method from crud repo
                 .orElseThrow(() -> new IllegalStateException("book doesn't exist")); // If a value is present, returns the value, otherwise throws an exception produced by the exception supplying function
 
-        if (author != null && // if author of this id differs - update it
-                author.length() > 0 &&
-                !Objects.equals(book.getAuthor(), author)) {
-            book.setAuthor(author);
+        if (book.getAuthor() != null && // if author of this id differs - update it
+                book.getAuthor().length() > 0 &&
+                !Objects.equals(bookOld.getAuthor(), book.getAuthor())) {
+            bookOld.setAuthor(book.getAuthor());
         }
 
-        if (title != null &&
-                title.length() > 0 &&
-                !Objects.equals(book.getTitle(), title)) { // if passed title is the title of other book with different id -> exception
-            Optional<Book> bookOptional = bookRepository.findBooksByTitle(title);
+        if (book.getTitle() != null &&
+                book.getTitle().length() > 0 &&
+                !Objects.equals(bookOld.getTitle(), book.getTitle())) { // if passed title is the title of other book with different id -> exception
+            Optional<Book> bookOptional = bookRepository.findBooksByTitle(book.getTitle());
             if (bookOptional.isPresent()) {
                 throw new IllegalStateException("title already exists");
             }
-            book.setTitle(title);
+            bookOld.setTitle(book.getTitle());
         }
     }
 }

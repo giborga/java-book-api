@@ -36,11 +36,11 @@ public class BookController {
         bookService.deleteBook(bookId);
     }
 
-    @PutMapping() //http://localhost:8082/api/v1/book/1?title=War+and+Piece
+    @PutMapping(path = "{bookId}") //http://localhost:8082/api/v1/book/1?title=War+and+Piece
     public void updateBook(
-                              @RequestParam() Long bookId,
-                              @RequestParam(required = false) String author,
-                              @RequestParam(required = false) String title) {
-        bookService.updateBook(bookId, author, title);
+            @PathVariable("bookId") Long bookId,
+            @RequestBody Book book
+    ) {
+        bookService.updateBook(bookId, book);
     }
 }

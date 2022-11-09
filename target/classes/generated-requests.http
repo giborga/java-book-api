@@ -43,6 +43,6 @@ DELETE http://localhost:8082/api/v1/book/1
 PUT http://localhost:8082/api/v1/book/1
 
 {
-"author": "Fyodor+Dostoevsky",
-"title": "War+and+Peace"
+"author": "Fyodor Dostoevsky",
+"title": "War and Peace"
 }
