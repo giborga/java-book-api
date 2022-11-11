@@ -2,21 +2,29 @@
 
 package com.example.demo.book;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 //use spring data jpa
+@Data //get rid of boilerplate code
 @Entity // hibernate
 @Table // map Book class to a table in database
+@Getter
+@Setter
+@EqualsAndHashCode
+@AllArgsConstructor
+
 public class Book {
 
     @Id
     @SequenceGenerator(
-        name = "book_sequence",
-        sequenceName = "book_sequence",
-        allocationSize = 1 // increment 1
+            name = "book_sequence",
+            sequenceName = "book_sequence",
+            allocationSize = 1 // increment 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, // recommended for postgres
-        generator = "book_sequence")
+            generator = "book_sequence")
     private Long id;
     private String author;
     private String title;
@@ -24,36 +32,13 @@ public class Book {
     public Book() { // 2 different constructors with/without id always have class name
     } //+why do we need an empty one? jpa needs it?
 
-    public Book(String author, // dont need id - it will be generated
-                   String title) {
-        this.author = author; // don't need id here - variable is already assigned in SequenceGenerator
-        this.title = title;
-    }
-
-    //getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    } // + why do we need to write it again? why not just title?
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
+    public Book(String author,
+                String title) {
         this.author = author;
+        this.title = title;
+
     }
+
 
     @Override
     public String toString() {
