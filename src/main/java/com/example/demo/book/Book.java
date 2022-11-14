@@ -18,27 +18,21 @@ import javax.persistence.*;
 public class Book {
 
     @Id
-    @SequenceGenerator(
-            name = "book_sequence",
-            sequenceName = "book_sequence",
-            allocationSize = 1 // increment 1
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, // recommended for postgres
-            generator = "book_sequence")
     private Long id;
     private String author;
     private String title;
 
-    public Book() { // 2 different constructors with/without id always have class name
-    } //+why do we need an empty one? jpa needs it?
+    public Book() {
+    }
 
     public Book(String author,
                 String title) {
         this.author = author;
         this.title = title;
-
     }
-
 
     @Override
     public String toString() {

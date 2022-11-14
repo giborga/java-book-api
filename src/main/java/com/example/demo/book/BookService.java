@@ -35,7 +35,7 @@ public class BookService {
             throw new IllegalStateException("book with title " + book + " already exists"); //throws an exception and doesn't return books
         }
         bookRepository.save(book); // if false - saves the book (method from crud repository)
-    };
+    }
 
     public void deleteBook(Long id) {
         boolean exists = bookRepository.existsById(id); // method from crud repository
