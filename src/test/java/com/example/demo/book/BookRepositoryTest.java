@@ -22,12 +22,20 @@ class BookRepositoryTest {
     void tearDown() {bookRepository.deleteAll();}
 
     @Test
-    void checksIfBookExistsByTitle() {
+    void checksIfBookExistsByTitle() { // works with h2 only
 
-        String title = "Unfound Rooms";
+        String title = "Unfound Door";
         Book book = new Book("Tbilisi", title);
         bookRepository.save(book);
         Optional<Book> foundBook  = bookRepository.findBooksByTitle(title);
         assertThat(foundBook).isPresent();
+    }
+
+    @Test
+    void checksIfBookNotExistsByTitle() { // works with h2 only
+        String title = "Unfound Door";
+        //Book book = new Book("Davit Aghnashenebeli", title);
+        Optional<Book> foundBook  = bookRepository.findBooksByTitle(title);
+        assertThat(foundBook).isNotPresent();
     }
 }

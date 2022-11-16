@@ -57,14 +57,14 @@ public class BookService {
             bookOld.setAuthor(book.getAuthor());
         }
 
-        if (book.getTitle() != null &&
+        if (book.getTitle() != null && // same test
                 book.getTitle().length() > 0 &&
                 !Objects.equals(bookOld.getTitle(), book.getTitle())) { // if passed title is the title of other book with different id -> exception
-            Optional<Book> bookOptional = bookRepository.findBooksByTitle(book.getTitle());
-            if (bookOptional.isPresent()) {
+            Optional<Book> bookOptional = bookRepository.findBooksByTitle(book.getTitle()); // object
+            if (bookOptional.isPresent()) { // new test
                 throw new IllegalStateException("title already exists");
             }
-            bookOld.setTitle(book.getTitle());
+            bookOld.setTitle(book.getTitle()); // same test
         }
     }
 }
